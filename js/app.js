@@ -10,18 +10,18 @@
             return (Math.random() >= 0.5);
         }
         // gets a nodelist of student names from the DOM elements with a class of .name-col and stores them in nameColumns
-        var nameColumns = $('tbody .name-col'),
+        let nameColumns = $('tbody .name-col'),
         // this sets up an object of named arrays, where by the name is the Student name and the elements of the array are true/false depending on attendance
             attendance = {};
         // loops through the nodeLest of elements and
         nameColumns.each(function() {
             // gets the innertext (the Student names)
-            var name = this.innerText;
+            let name = this.innerText;
             // places an empty named array into the object with the value being the array and the student name (innerText) being the key
             attendance[name] = [];
 
             // loop through named array, calling getRandom() to determine a true/false status of student attendance, and push the results into the array
-            for (var i = 0; i <= 11; i++) {
+            for (let i = 0; i <= 11; i++) {
                 attendance[name].push(getRandom());
             }
         });
@@ -62,7 +62,7 @@ const UIModule = (function () {
 
                 // create a nodelist that defines a students row as:
                 // [1 name cell, 12 attend cells, 1 missed cell]
-                var studentRow = $(this).parent('tr'),
+                let studentRow = $(this).parent('tr'),
                     // create nodelist of checkboxes in each cell of the row [12 attend cells]
                     dayChecks = $(studentRow).children('td').children('input'),
                     // sets the current value of numMissed to 0 (for the says missed column)
@@ -109,7 +109,7 @@ const appController = (function (dataMdl, UIMdl) {
             let name = this.firstElementChild.innerText;
             // if the checkbox exists in the nodeList of allCheckboxes, return its position in the nodeList
             // returns a number between 0-59 as there are 60 checkboxes in total
-            var idx = $.inArray(e.target, DOM.$allCheckboxes);
+            let idx = $.inArray(e.target, DOM.$allCheckboxes);
 
             // algorithm to determine the position of the checked box in the student rows (which would be i will equal a number 0-11) from its returned position (idx = 0-59) within the nodeList, $allCheckboxes
             let i = (idx>=0)&&(idx<=11)?(idx):
